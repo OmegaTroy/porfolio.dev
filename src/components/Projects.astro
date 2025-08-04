@@ -1,0 +1,167 @@
+---
+import LinkButton from "./LinkButton.astro";
+import Link from "./icons/Link.astro";
+
+// 1. Carga dinámica de íconos `.astro`
+const iconModules = import.meta.glob("./icons/*.astro", { eager: true });
+
+function getIconComponent(name) {
+  return iconModules[`./icons/${name}.astro`]?.default;
+}
+
+// 2. Definición de tags (ahora con `icon: "NombreDelArchivoSinExtension"` en lugar de import)
+const TAGS = {
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white",
+    icon: "NextJS",
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: "Tailwind",
+  },
+  Astro: {
+    name: "AstroJs",
+    class: "bg-[#003159] text-white",
+    icon: "Astrojs",
+  },
+  Node: {
+    name: "Node.js",
+    class: "bg-[#003159] text-white",
+    icon: "Node",
+  },
+  Html: {
+    name: "HTML",
+    class: "bg-[#003159] text-white",
+    icon: "Html",
+  },
+  Css: {
+    name: "CSS",
+    class: "bg-[#003159] text-white",
+    icon: "Css",
+  },
+  JavaScript: {
+    name: "JavaScript",
+    class: "bg-[#003159] text-white",
+    icon: "JavaScript",
+  },
+};
+
+// 3. Lista de proyectos
+const PROJECTS = [
+  {
+    title: "Barber page",
+    description: "una landing page para una barberia",
+    link: "https://barber-page-sable.vercel.app/",
+    image: "/projects/448shots_so.webp",
+    tags: [TAGS.Css, TAGS.Html, TAGS.JavaScript],
+  },
+  {
+    name: "Municipalidad de Campana",
+    description:
+      "Realizado como proyecto de fin de curso, un rediseño de la pagina de Municipalidad de Campana",
+    link: "https://main--benevolent-starlight-20a533.netlify.app/",
+    image: "/projects/247shots_so.webp",
+    tags: [TAGS.Astro, TAGS.Css, TAGS.Html, TAGS.JavaScript],
+  },
+  {
+    name: "Task List",
+    description:
+      "Task List, para la Terminal Hecha con node.js express y MongoDB",
+    link: "https://github.com/OmegaTroy/taskList?tab=readme-ov-file",
+    image: "/projects/347174829-8e78882c-2856-421c-a736-f5d35007827a.webp",
+    tags: [TAGS.Node],
+  },
+  {
+    name: "generador de imagenes con ia",
+    description:
+      "generador de imagenes con IA, para la Hackaton de cloudinary y midudev",
+    link: "https://generador-de-imagenes-con-ia.vercel.app/",
+    image: "/projects/582_1x_shots_so.webp",
+    tags: [TAGS.Astro, TAGS.Css, TAGS.Html, TAGS.JavaScript],
+  },
+  {
+    name: "Portafolio web",
+    description:
+      "Portafolio web, para un concurso de desarrollo web para el programador y streamer Dot Dager",
+    link: "https://web-dager.vercel.app/",
+    image: "/projects/346shots_so.webp",
+    tags: [TAGS.Astro, TAGS.Css, TAGS.Html, TAGS.JavaScript],
+  },
+  {
+    name: "tech Store",
+    description:
+      "Tech Store es una tienda web moderna de productos electrónicos, desarrollada con Next.js, TailwindCSS y potenciada por Strapi como CMS. Ofrece una experiencia rápida, responsiva y fácil de navegar, con contenido totalmente administrable y un diseño optimizado para todos los dispositivos.",
+    image: "/projects/478shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    name: "Anime Store",
+    description:
+      "Anime Store es una tienda online dedicada al mundo del anime, donde encontrarás figuras, ropa, accesorios y coleccionables de tus series favoritas. Con un diseño moderno hecho en Next.js, TailwindCSS y gestionado con Strapi, ofrece una experiencia rápida, visual y fácil de administrar.",
+    image: "/projects/123shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    name: "Nippon Store",
+    description:
+      "Nippon Store es una tienda online especializada en artículos auténticos importados de Japón: snacks, papelería, decoración, figuras y más. Desarrollada con Next.js, TailwindCSS y MedusaJS, ofrece una experiencia de compra rápida, personalizable y escalable, con un diseño moderno y totalmente adaptable.",
+    image: "/projects/701shots_so.webp",
+    tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+];
+---
+
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, name, description, tags, link }) => (
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt={title || name}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              src={image}
+            />
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col gap-10 md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title || name}
+          </h3>
+          <div class="flex flex-col mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => {
+                const Icon = getIconComponent(tag.icon);
+                return (
+                  <li>
+                    <span
+                      class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}
+                    >
+                      {Icon && <Icon class="size-4" />}
+                      {tag.name}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div class="mt-2 text-gray-700 dark:text-gray-400">
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</div>

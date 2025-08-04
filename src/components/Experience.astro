@@ -1,0 +1,29 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    date: "Actualmente...",
+    title: "Freelance",
+    company: "Web Developer",
+    description:
+      "Desarrollo de sitios web, aplicaciones web para diferentes clientes.",
+  },
+  {
+    date: "Diciembre 2024",
+    title: "Tienda Web",
+    company: "VirtualTech",
+    description:
+      "VirtualTech es una tienda web desarrollada con ReactJS para el frontend y PHP en el backend, utilizando MySQL para la gestión de datos de envío. Se implementó una pasarela de pago mediante la API de Mercado Pago, permitiendo transacciones seguras y actualizaciones automáticas del estado de las órdenes mediante webhooks.",
+  },
+];
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
