@@ -5,8 +5,9 @@ import Link from "./icons/Link.astro";
 // 1. Carga dinámica de íconos `.astro`
 const iconModules = import.meta.glob("./icons/*.astro", { eager: true });
 
-function getIconComponent(name) {
-  return iconModules[`./icons/${name}.astro`]?.default;
+function getIconComponent(name: string): any {
+  const module = iconModules[`./icons/${name}.astro`];
+  return (module as { default: any })?.default;
 }
 
 // 2. Definición de tags (ahora con `icon: "NombreDelArchivoSinExtension"` en lugar de import)
