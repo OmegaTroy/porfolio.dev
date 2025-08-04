@@ -23,29 +23,44 @@ const TAGS = {
     icon: "Tailwind",
   },
   Astro: {
-    name: "AstroJs",
-    class: "bg-[#003159] text-white",
+    name: "Astro.js",
+    class: "bg-[#FF5D01] text-black font-bold",
     icon: "Astrojs",
   },
   Node: {
     name: "Node.js",
-    class: "bg-[#003159] text-white",
+    class: "bg-[#82CD28] text-black font-bold",
     icon: "Node",
   },
   Html: {
     name: "HTML",
-    class: "bg-[#003159] text-white",
+    class: "bg-[#F16529] text-black font-bold",
     icon: "Html",
   },
   Css: {
     name: "CSS",
-    class: "bg-[#003159] text-white",
+    class: "bg-[#1DA5E0] text-black font-bold",
     icon: "Css",
   },
   JavaScript: {
     name: "JavaScript",
-    class: "bg-[#003159] text-white",
+    class: "bg-[#F7E025] text-black font-bold",
     icon: "JavaScript",
+  },
+  React: {
+    name: "React.js",
+    class: "bg-[#00D8FF] text-black font-bold",
+    icon: "React",
+  },
+  MongoDb: {
+    name: "MongoDB",
+    class: "bg-[#4EA94B] text-black font-bold",
+    icon: "MongoDb",
+  },
+  ExpressJs: {
+    name: "Express.js",
+    class: "bg-[#000000] text-white font-bold",
+    icon: "ExpressJs",
   },
 };
 
@@ -72,7 +87,7 @@ const PROJECTS = [
       "Task List, para la Terminal Hecha con node.js express y MongoDB",
     link: "https://github.com/OmegaTroy/taskList?tab=readme-ov-file",
     image: "/projects/347174829-8e78882c-2856-421c-a736-f5d35007827a.webp",
-    tags: [TAGS.Node],
+    tags: [TAGS.Node, TAGS.ExpressJs, TAGS.MongoDb],
   },
   {
     name: "generador de imagenes con ia",
@@ -110,6 +125,13 @@ const PROJECTS = [
       "Nippon Store es una tienda online especializada en artículos auténticos importados de Japón: snacks, papelería, decoración, figuras y más. Desarrollada con Next.js, TailwindCSS y MedusaJS, ofrece una experiencia de compra rápida, personalizable y escalable, con un diseño moderno y totalmente adaptable.",
     image: "/projects/701shots_so.webp",
     tags: [TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    name: "Acortador de URLs con el stack MERN",
+    description:
+      "Short URL es una aplicación web para generar URL cortas y fáciles de recordar. Desarrollada con el stack MERN ofrece una experiencia de generación de URL cortas rápida y personalizable, con un diseño moderno y totalmente adaptable.",
+    image: "/projects/821shots_so.webp",
+    tags: [TAGS.Node, TAGS.TAILWIND, TAGS.ExpressJs, TAGS.MongoDb, TAGS.React],
   },
 ];
 ---
